@@ -13,7 +13,7 @@ resource "aws_iam_access_key" "newemp" {
   user  = element(var.iam_names, count.index)
 
   depends_on = [
-    aws_iam_user_policy.newemp_policy,
+    aws_iam_user_policy.newemp_policy
   ]
 
 }
