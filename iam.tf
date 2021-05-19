@@ -12,10 +12,6 @@ resource "aws_iam_access_key" "newhirekeys" {
   count = length(var.iam_names)
   user  = element(var.iam_names, count.index)
 
-  depends_on = [
-    aws_iam_user_policy.newhire_policy
-  ]
-
 }
 
 resource "aws_iam_account_password_policy" "strict" {
@@ -32,7 +28,12 @@ resource "aws_iam_user_policy" "newhire_policy" {
   count = length(var.iam_names)
   name = "new"
   user = element(var.iam_names,count.index)
-
+  
+  depends_on = [
+    #aws_iam_user_policy.newhire_policy
+    aws_iam_user.newemployees
+  ]
+ 
   policy = <<EOF
 {
   "Version": "2012-10-17",
