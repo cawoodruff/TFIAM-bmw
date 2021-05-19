@@ -10,7 +10,12 @@ name          = element(var.iam_names,count.index)
 
 resource "aws_iam_access_key" "newemp" {
   count = length(var.iam_names)
-  user = element(var.iam_names,count.index)
+  user  = element(var.iam_names, count.index)
+
+  depends_on = [
+    aws_iam_user_policy.newemp_policy,
+  ]
+
 }
 
 
