@@ -2,7 +2,6 @@ resource "aws_iam_user" "newemployees" {
   count = length(var.iam_names)
   name  = element(var.iam_names,count.index)
   path = "/system/"
-  create_access_keys = true
 
   tags = {
     tag-key = "new hire"
