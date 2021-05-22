@@ -8,11 +8,11 @@ resource "aws_iam_user" "newemployees" {
   }
 }
 
-resource "aws_iam_access_key" "newhirekeys" {
-  count = length(var.iam_names)
-  user  = element(var.iam_names, count.index)
-
-}
+#resource "aws_iam_access_key" "newhirekeys" {
+#  count = length(var.iam_names)
+#  user  = element(var.iam_names, count.index)
+#
+#}
 
 resource "aws_iam_account_password_policy" "strict" {
   minimum_password_length        = 8
@@ -31,7 +31,7 @@ resource "aws_iam_user_policy" "newhire_policy" {
   
   depends_on = [
     aws_iam_user.newemployees,
-    aws_iam_access_key.newhirekeys 
+   # aws_iam_access_key.newhirekeys 
   ]
   
   policy = <<EOF
