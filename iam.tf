@@ -30,13 +30,10 @@ resource "aws_iam_user_policy" "newhire_policy" {
   user = element(var.iam_names,count.index)
   
   depends_on = [
-    aws_iam_user.newemployees
+    aws_iam_user.newemployees,
+    aws_iam_access_key.newhirekeys 
   ]
   
-  depends_on = [
-    aws_iam_access_key.newhirekeys
-  ]
- 
   policy = <<EOF
 {
   "Version": "2012-10-17",
