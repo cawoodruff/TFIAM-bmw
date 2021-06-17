@@ -12,6 +12,10 @@ resource "aws_iam_access_key" "newhirekeys" {
   count = length(var.iam_names)
   user  = element(var.iam_names, count.index)
 
+  depends_on = [
+    #aws_iam_user_policy.newhire_policy
+    aws_iam_user.newemployees
+  ]
 }
 
 resource "aws_iam_account_password_policy" "strict" {
